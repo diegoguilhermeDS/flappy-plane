@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameObstacleController : MonoBehaviour
 {
@@ -15,29 +16,31 @@ public class GameObstacleController : MonoBehaviour
     [SerializeField] private float maxTimer = 1f;
     [SerializeField] private float minTimer = 3f;
 
-    private float gamePoints = 0f;
+    private PlaneController plane;
+
+    private int level;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        plane = FindObjectOfType<PlaneController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        gamePoints += Time.deltaTime;
-
+        level = plane.ReturnLevel();
         CreateObstacle();
     }
+
+    
 
     private void CreateObstacle()
     {
         timer -= Time.deltaTime;
         if (timer <= 0f)
         {
-            timer = Random.Range(minTimer, maxTimer);
+            timer = Random.Range(minTimer / level, maxTimer);
 
             positionObstacleInit.y = Random.Range(minY, maxY);
 
