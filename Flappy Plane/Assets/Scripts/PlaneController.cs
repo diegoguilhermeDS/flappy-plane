@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class PlaneController : MonoBehaviour
 {
     private Rigidbody2D planeRB;
+    [SerializeField] private GameObject smoke;
+    [SerializeField] private AudioClip soundLevel;
+    private Vector3 camPosition;
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private Text textLevel;
@@ -15,6 +18,7 @@ public class PlaneController : MonoBehaviour
 
     private int level = 1;
     private float gamePoints = 0f;
+    private Vector3 smokePosition;
 
 
 
@@ -22,6 +26,7 @@ public class PlaneController : MonoBehaviour
     void Start()
     {
         planeRB = GetComponent<Rigidbody2D>();
+        camPosition = Camera.main.transform.position;
     }
 
     // Update is called once per frame
@@ -44,10 +49,15 @@ public class PlaneController : MonoBehaviour
 
     private void UpPlane()
     {
+        smokePosition = transform.position;
+        smokePosition.x += -0.4f;
 
         if (Input.GetKeyDown(KeyCode.Space) && transform.position.y < 4.215f)
         {
             planeRB.velocity = Vector2.up * speed;
+            GameObject renderSmoke =  Instantiate(smoke, smokePosition, Quaternion.identity);
+
+            Destroy(renderSmoke, 2f);
         }
     }
 
@@ -85,6 +95,7 @@ public class PlaneController : MonoBehaviour
 
         if(gamePoints >= NextLevel)
         {
+            AudioSource.PlayClipAtPoint(soundLevel, camPosition);
             level++;
             NextLevel *= 2;
         }
