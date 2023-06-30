@@ -180,6 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02463827fc420a64b873880b78974e1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoke: {fileID: 8997513090347362344, guid: 5f235e900d0d93a499b3f82b4089e95d, type: 3}
+  soundLevel: {fileID: 8300000, guid: 3f23c4f224017644e8a0c1df40c8eedd, type: 3}
   speed: 5
   textLevel: {fileID: 0}
   textPoint: {fileID: 0}
