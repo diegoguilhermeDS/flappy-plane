@@ -52,7 +52,7 @@ public class PlaneController : MonoBehaviour
         smokePosition = transform.position;
         smokePosition.x += -0.4f;
 
-        if (Input.GetKeyDown(KeyCode.Space) && transform.position.y < 4.215f)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && transform.position.y < 4.215f)
         {
             planeRB.velocity = Vector2.up * speed;
             GameObject renderSmoke =  Instantiate(smoke, smokePosition, Quaternion.identity);

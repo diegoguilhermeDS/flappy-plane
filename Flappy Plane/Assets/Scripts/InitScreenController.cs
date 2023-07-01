@@ -5,17 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class InitScreenController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    
+
+    public void StartGame()
     {
-        
+        SceneManager.LoadScene(1);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ExitGame()
     {
-        if (Input.GetKeyUp(KeyCode.Space)) {
-            SceneManager.LoadScene(1);
-        }
+        Debug.Log("Saindo...");
+        Application.Quit();
     }
 }
